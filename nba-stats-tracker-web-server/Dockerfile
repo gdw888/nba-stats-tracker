@@ -5,10 +5,10 @@ FROM openjdk:17-slim
 WORKDIR /app
 
 # Copy the web server jar to the container
-COPY build/libs/nba-stats-tracker-web-server-1.0-SNAPSHOT.jar /app/nba-stats-tracker-web-server-1.0-SNAPSHOT.jar
+COPY build/libs/nba-stats-tracker-web-server-1.0.0.jar /app/nba-stats-tracker-web-server-1.0.0.jar
 
 # Expose the port the application runs on
 EXPOSE 8080
 
 # Run the web server application
-ENTRYPOINT ["java", "-jar", "nba-stats-tracker-web-server-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "nba-stats-tracker-web-server-1.0.0.jar"]
