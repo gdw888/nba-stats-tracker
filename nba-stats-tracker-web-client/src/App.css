@@ -1,0 +1,118 @@
+/* Global Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f4f9;
+  color: #333;
+}
+
+/* App Container */
+.App {
+  text-align: center;
+}
+
+/* Header and Navigation */
+.App-header {
+  background-color: #ffffff; /* Light background for the header */
+  padding: 20px;
+  color: #4a4a4a; /* Darker grey for better readability */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow for depth */
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+nav a {
+  color: #007bff; /* Bright blue for links */
+  text-decoration: none;
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #0056b3; /* Darker blue on hover */
+  text-decoration: underline;
+}
+
+/* Home & Login Components */
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #ff4081; /* Vivid pink for buttons */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+}
+
+button:hover {
+  background-color: #f50057; /* Darker pink on hover */
+}
+
+/* PlayerList Component */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid #e1e1e1; /* Lighter border color */
+}
+
+a {
+  color: #007bff; /* Matching link color */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Login Component */
+.Login {
+  margin: 20px auto;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ddd; /* Lighter border */
+  border-radius: 8px;
+  background: #ffffff; /* White background for login box */
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+}
+
+h1, h2 {
+  color: #333; /* Consistent text color */
+}
+
+/* Add responsiveness */
+@media (max-width: 600px) {
+  .App-header {
+    padding: 10px;
+  }
+
+  nav a {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .Login, .PlayerList {
+    width: 90%;
+    margin: 20px auto;
+  }
+}

@@ -35,3 +35,18 @@ nba-stats-tracker-web-server/src/main/resources/*.p12
 nba-stats-tracker-web-server/src/main/resources/*.crt
 nba-stats-tracker-web-server/src/main/resources/*.pem
 
+nba-stats-tracker-web-client/node_modules/
+nba-stats-tracker-web-client/build/
+nba-stats-tracker-web-client/*pem
+nba-stats-tracker-web-client/npm-debug.log*
+nba-stats-tracker-web-client/yarn-debug.log*
+nba-stats-tracker-web-client/yarn-error.log*
+nba-stats-tracker-web-client/jspm_packages/
+nba-stats-tracker-web-client/.npm
+nba-stats-tracker-web-client/.eslintcache
+nba-stats-tracker-web-client/.node_repl_history
+nba-stats-tracker-web-client/*.tgz
+nba-stats-tracker-web-client/.env*
+
+
+
