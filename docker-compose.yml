@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  nba-stats-tracker-service-discovery:
+    build:
+      context: ./nba-stats-tracker-service-discovery
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+    networks:
+      - eureka-network
+
+  nba-stats-tracker-web-server:
+    build:
+      context: ./nba-stats-tracker-web-server
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://nba-stats-tracker-service-discovery:8761/eureka/
+    ports:
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+    depends_on:
+      - nba-stats-tracker-service-discovery
+    env_file:
+      - .env
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - eureka-network
+
+  nba-stats-tracker-api-gateway:
+    build:
+      context: ./nba-stats-tracker-api-gateway
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://nba-stats-tracker-service-discovery:8761/eureka/
+    ports:
+      - "8081:8081"
+    depends_on:
+      - nba-stats-tracker-service-discovery
+      - nba-stats-tracker-web-server
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - eureka-network
+
+networks:
+  eureka-network:

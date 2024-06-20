@@ -1,0 +1,18 @@
+allprojects {
+    group = 'com.gdw888'
+    version = '1.0.0'
+
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/release" }
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/release" }
+    }
+}

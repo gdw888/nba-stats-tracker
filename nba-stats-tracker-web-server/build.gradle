@@ -1,0 +1,43 @@
+plugins {
+	id 'org.springframework.boot' version '3.2.0'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'java'
+}
+
+group = 'com.gdw888'
+version = '1.0-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2023.0.0'
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+	// Springdoc OpenAPI
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+
+	implementation 'software.amazon.awssdk:dynamodb-enhanced:2.20.0'
+
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

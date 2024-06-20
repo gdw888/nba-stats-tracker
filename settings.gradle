@@ -1,0 +1,6 @@
+rootProject.name = 'nba-stats-tracker'
+include 'nba-stats-tracker-web-server'
+include 'nba-stats-tracker-web-client'
+include 'nba-stats-tracker-service-discovery'
+include 'nba-stats-tracker-api-gateway'
+

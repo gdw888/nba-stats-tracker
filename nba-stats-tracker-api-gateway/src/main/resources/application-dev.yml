@@ -1,0 +1,47 @@
+server:
+  port: 8081
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:keystore.p12
+    key-store-password: password1
+    key-alias: tomcat
+    trust-store: classpath:custom-truststore.jks
+    trust-store-password: changeit
+
+spring:
+  application:
+    name: nba-stats-tracker-api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: nba-stats-tracker-web-server
+          uri: lb://nba-stats-tracker-web-server
+          predicates:
+            - Path=/api/**
+            - Path=/auth/**
+          filters:
+            - RemoveRequestHeader=Origin
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    gateway:
+      enabled: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

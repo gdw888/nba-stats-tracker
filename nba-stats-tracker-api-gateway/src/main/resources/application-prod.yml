@@ -1,0 +1,24 @@
+server:
+  port: 8081
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:keystore.p12
+    key-store-password: password1
+    key-alias: tomcat
+    trust-store: classpath:custom-truststore.jks
+    trust-store-password: changeit
+
+spring:
+  application:
+    name: nba-stats-tracker-api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
