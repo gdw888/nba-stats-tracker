@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.module }}-build-artifacts
-          path: ${{ matrix.module }}/build/libs/*.jar
+          path: ${{ matrix.module }}/build/libs/*1.0.0.jar
 
   test:
     runs-on: ubuntu-latest
