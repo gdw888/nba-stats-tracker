@@ -29,7 +29,6 @@ nba-stats-tracker-api-gateway/src/main/resources/*.p12
 nba-stats-tracker-api-gateway/src/main/resources/*.crt
 
 nba-stats-tracker-service-discovery/build
-nba-stats-tracker-web-client
 nba-stats-tracker-web-server/build
 nba-stats-tracker-web-server/src/main/resources/*.jks
 nba-stats-tracker-web-server/src/main/resources/*.p12
