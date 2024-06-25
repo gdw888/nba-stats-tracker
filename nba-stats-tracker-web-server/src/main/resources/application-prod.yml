@@ -13,11 +13,17 @@ server:
     key-store-type: PKCS12
     key-store: classpath:keystore.p12
     key-store-password: password1
-    key-alias: myserver
+    key-alias: www.gdw888.net
 
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://eureka-server:8761/eureka/
+      defaultZone: http://localhost:8764/eureka/
+
+dynamo:
+  tables:
+    nba-active-players: nba_active_player_dev
+    nba-player-info: nba_player_info_dev
+    nba-player-stats: nba_player_stats_dev
