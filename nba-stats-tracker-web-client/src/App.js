@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Add from './components/Add';
 import Edit from './components/Edit';
 import Remove from './components/Remove';
+import PlayerDetails from './components/PlayerDetails'; // Import the new component
 import { AuthProvider, useAuth } from './AuthContext';
 
 function Navigation() {
@@ -53,6 +54,7 @@ function App() {
               <Route path="/add" element={<Add />} />
               <Route path="/edit" element={<Edit />} />
               <Route path="/remove" element={<Remove />} />
+              <Route path="/player/:playerName" element={<PlayerDetails />} /> {/* New Route */}
             </Routes>
           </header>
         </div>

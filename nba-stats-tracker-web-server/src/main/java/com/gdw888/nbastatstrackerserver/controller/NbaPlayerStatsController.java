@@ -22,8 +22,13 @@ public class NbaPlayerStatsController {
     }
 
     @GetMapping("/{playerName}/{date}")
-    public NbaPlayerStats getNbaPlayerStats(@PathVariable String playerName, @PathVariable String date) {
+    public NbaPlayerStats getNbaPlayerStatsByDate(@PathVariable String playerName, @PathVariable String date) {
         return playerStatsService.getNbaPlayerStats(playerName, date);
+    }
+
+    @GetMapping("/{playerName}")
+    public List<NbaPlayerStats> getNbaPlayerStats(@PathVariable String playerName) {
+        return playerStatsService.getNbaPlayerStatsByPlayerName(playerName);
     }
 
     @PostMapping

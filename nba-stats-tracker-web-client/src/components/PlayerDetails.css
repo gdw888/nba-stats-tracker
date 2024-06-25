@@ -1,0 +1,45 @@
+.stats_table {
+    border: 1px solid #747678;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: .785714286em;
+    font-family: Verdana,sans-serif;
+}
+
+.stats_table.fill {
+    width: 100%;
+}
+
+.stats_table th.fixed {
+    position: absolute;
+    border-top: 0;
+    z-index: 102;
+}
+
+.stats_table tbody td.fixed {
+    position: absolute;
+    z-index: 101;
+}
+
+.stats_table tfoot td.fixed {
+    position: absolute;
+    z-index: 101;
+    left: 0;
+}
+
+.stats_table col {
+    background-color: white;
+}
+
+.stats_table tr {
+    vertical-align: top;
+}
+
+.stats_table th, .stats_table td {
+    border-style: solid;
+    border-bottom-style: dotted;
+    border-color: #ddd;
+    border-width: 1px;
+    padding: 4px 3px;
+    vertical-align: middle;
+}

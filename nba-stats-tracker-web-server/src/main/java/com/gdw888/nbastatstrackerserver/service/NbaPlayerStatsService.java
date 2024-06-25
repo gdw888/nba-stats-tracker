@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
+import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +29,13 @@ public class NbaPlayerStatsService {
 
     public NbaPlayerStats getNbaPlayerStats(String playerName, String date) {
         return nbaPlayerStatsTable.getItem(r -> r.key(k -> k.partitionValue(playerName).sortValue(date)));
+    }
+
+    public List<NbaPlayerStats> getNbaPlayerStatsByPlayerName(String playerName) {
+        return StreamSupport.stream(
+                        nbaPlayerStatsTable.query(r -> r.queryConditional(QueryConditional.keyEqualTo(k -> k.partitionValue(playerName))))
+                                .items().spliterator(), false)
+                .collect(Collectors.toList());
     }
 
     public void saveNbaPlayerStats(NbaPlayerStats playerStats) {
