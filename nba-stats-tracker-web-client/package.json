@@ -15,7 +15,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "HTTPS=true SSL_CRT_FILE=./cert.pem SSL_KEY_FILE=./key.pem react-scripts start",
+    "start:": "HTTPS=true SSL_CRT_FILE=./cert.pem SSL_KEY_FILE=./key.pem react-scripts start --port 3000",
+    "start:http": "react-scripts start --port 3000",
+    "start:https": "HTTPS=true SSL_CRT_FILE=./cert.pem SSL_KEY_FILE=./key.pem react-scripts start --port 3000",
     "build": "env-cmd -f .env.local react-scripts build",
     "build:production": "env-cmd -f .env.production react-scripts build",
     "test": "react-scripts test",
