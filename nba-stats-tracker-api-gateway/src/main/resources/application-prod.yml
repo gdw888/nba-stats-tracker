@@ -1,13 +1,11 @@
 server:
   port: 8081
   ssl:
-    enabled: true
+    enabled: false
     key-store-type: PKCS12
     key-store: classpath:keystore.p12
     key-store-password: password1
-    key-alias: tomcat
-    trust-store: classpath:custom-truststore.jks
-    trust-store-password: changeit
+    key-alias: www.gdw888.net
 
 spring:
   application:
@@ -17,7 +15,36 @@ spring:
       discovery:
         locator:
           enabled: true
+      routes:
+        - id: nba-stats-tracker-web-server
+          uri: lb://nba-stats-tracker-web-server
+          predicates:
+            - Path=/api/**
+            - Path=/auth/**
+          filters:
+            - RemoveRequestHeader=Origin
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    gateway:
+      enabled: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://www.gdw888.net:8764/eureka/
+
+cors:
+  allowed-origins: "https://www.gdw888.net,http://www.gdw888.net"
+  allowed-methods: "*"
+  allowed-headers: "*"
 
 logging:
   level:
