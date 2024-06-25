@@ -3,11 +3,11 @@ spring:
     name: nba-stats-tracker-service-discovery
 
 server:
-  port: 8761
+  port: 8764
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: www.gdw888.net
   client:
     register-with-eureka: false
     fetch-registry: false
