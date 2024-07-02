@@ -1,4 +1,4 @@
-package com.gdw888.nbastatstrackerapigateway;
+package com.gdw888.nbastatstrackerapigateway.config;
 
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
@@ -12,10 +12,10 @@ public class GatewayConfig {
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("nba-stats-tracker-web-server-api", r -> r.path("/api/**")
-                        .filters(f -> f.removeRequestHeader("Origin"))
-                        .uri("lb://nba-stats-tracker-web-server"))
-                .route("nba-stats-tracker-web-server-auth", r -> r.path("/auth/**")
-                        .filters(f -> f.removeRequestHeader("Origin"))
+                        //.filters(f -> f.removeRequestHeader("Origin"))
+                        .filters(f -> f.circuitBreaker(c -> c.setName("NbaStatsTrackerRestAPIs")
+                                        .setFallbackUri("forward:/fallback/NbaStatsTrackerServer"))
+                                .removeRequestHeader("Origin"))
                         .uri("lb://nba-stats-tracker-web-server"))
                 .build();
     }

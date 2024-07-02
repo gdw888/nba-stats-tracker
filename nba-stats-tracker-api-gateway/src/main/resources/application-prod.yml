@@ -7,6 +7,9 @@ server:
     key-store-password: password1
     key-alias: www.gdw888.net
 
+jwt:
+  secret: MySecretKeyMySecretKeyMySecretKeyMySecretKeyMySecretKeyMySecretKeyMySecretKeyMySecretKey
+
 spring:
   application:
     name: nba-stats-tracker-api-gateway
@@ -23,7 +26,6 @@ spring:
             - Path=/auth/**
           filters:
             - RemoveRequestHeader=Origin
-
 
 management:
   endpoints:
@@ -49,3 +51,19 @@ cors:
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: COUNT_BASED
+      minimumNumberOfCalls: 5
+      waitDurationInOpenState: 10000
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+  instances:
+    NbaStatsTrackerRestAPIs:
+      baseConfig: default
+      waitDurationInOpenState: 5000

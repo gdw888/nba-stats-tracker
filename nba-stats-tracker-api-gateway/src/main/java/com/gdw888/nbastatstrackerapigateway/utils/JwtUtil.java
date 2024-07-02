@@ -1,4 +1,5 @@
-package com.gdw888.nbastatstrackerserver.util;
+package com.gdw888.nbastatstrackerapigateway.utils;
+
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

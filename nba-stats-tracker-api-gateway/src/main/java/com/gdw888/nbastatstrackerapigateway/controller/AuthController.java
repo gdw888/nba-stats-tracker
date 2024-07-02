@@ -1,9 +1,12 @@
-package com.gdw888.nbastatstrackerserver.controller;
+package com.gdw888.nbastatstrackerapigateway.controller;
 
-import com.gdw888.nbastatstrackerserver.util.JwtUtil;
+import com.gdw888.nbastatstrackerapigateway.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
