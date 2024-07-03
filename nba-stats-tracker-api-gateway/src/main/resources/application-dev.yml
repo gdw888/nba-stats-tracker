@@ -26,6 +26,20 @@ spring:
             - Path=/auth/**
           filters:
             - RemoveRequestHeader=Origin
+        - id: write_operations_rate_limited
+          uri: lb://nba-stats-tracker-web-server
+          predicates:
+            - Path=/api/**
+            - Method=POST,DELETE,PUT
+          filters:
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@ipKeyResolver}"
+                rate-limiter: "#{@redisRateLimiter}"
+  redis:
+    host: localhost
+    port: 6379
+    password: yourpassword
 
 management:
   endpoints:
@@ -67,3 +81,7 @@ resilience4j.circuitbreaker:
     NbaStatsTrackerRestAPIs:
       baseConfig: default
       waitDurationInOpenState: 5000
+
+rate-limit:
+  defaultReplenishRate: 1
+  defaultBurstCapacity: 2
