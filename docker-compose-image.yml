@@ -52,5 +52,18 @@ services:
     networks:
       - eureka-network
 
+  nba-stats-tracker-redis:
+    build:
+      context: ./nba-stats-tracker-redis
+      dockerfile: Dockerfile
+    ports:
+      - "6379:6379"
+    networks:
+      - eureka-network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
 networks:
   eureka-network:
