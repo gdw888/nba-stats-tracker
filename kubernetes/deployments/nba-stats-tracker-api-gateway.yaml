@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nba-stats-tracker-api-gateway
+  namespace: nba-stats-tracker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nba-stats-tracker-api-gateway
+  template:
+    metadata:
+      labels:
+        app: nba-stats-tracker-api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: gdw888/nba-stats-tracker-api-gateway:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  name: nba-stats-tracker-config
+                  key: SPRING_PROFILES_ACTIVE
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              valueFrom:
+                configMapKeyRef:
+                  name: nba-stats-tracker-config
+                  key: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: nba-stats-tracker-secrets
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: nba-stats-tracker-secrets
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: nba-stats-tracker-secrets
+                  key: AWS_DEFAULT_REGION
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nba-stats-tracker-api-gateway
+  namespace: nba-stats-tracker
+spec:
+  selector:
+    app: nba-stats-tracker-api-gateway
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+  type: LoadBalancer
+

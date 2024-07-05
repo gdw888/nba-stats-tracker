@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nba-stats-tracker-config
+  namespace: nba-stats-tracker
+data:
+  SPRING_PROFILES_ACTIVE: dev
+  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://nba-stats-tracker-service-discovery:8761/eureka/
+

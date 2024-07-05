@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nba-stats-tracker-service-discovery
+  namespace: nba-stats-tracker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nba-stats-tracker-service-discovery
+  template:
+    metadata:
+      labels:
+        app: nba-stats-tracker-service-discovery
+    spec:
+      containers:
+        - name: service-discovery
+          image: gdw888/nba-stats-tracker-service-discovery:latest
+          ports:
+            - containerPort: 8761
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  name: nba-stats-tracker-config
+                  key: SPRING_PROFILES_ACTIVE
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nba-stats-tracker-service-discovery
+  namespace: nba-stats-tracker
+spec:
+  selector:
+    app: nba-stats-tracker-service-discovery
+  ports:
+    - protocol: TCP
+      port: 8761
+      targetPort: 8761
+  type: LoadBalancer
